@@ -76,10 +76,11 @@
                     url: "http://127.0.0.1:8000/api/posts",
                     method: "GET",
                     dataType: "json",
-                    success: function(posts) {
+                    success: function(posts, request) {
                         fetchPostsSuccessfully(posts);
                         postAddRow(post);
                         postBuildTableRow(post);
+                        console.log(request);
                     },
                     error: function (request, message, error) {
                         handleException(request, message, error);

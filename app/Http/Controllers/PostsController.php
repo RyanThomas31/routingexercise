@@ -10,10 +10,7 @@ class PostsController extends Controller
     public function getPosts() {
         // return response()->json(Memes::all(), 200);
         $postsResponse = response()->json(Memes::all(), 200);
-        $pos = $postsResponse->getData();
-        foreach ($pos as $key => $value) {
-            var_dump($key, $value);
-        }
+        return $postsResponse;
     }
 
     public function getPostById($id) {
