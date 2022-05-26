@@ -135,7 +135,7 @@
                         msg += "Message" + request.responseJSON.Message + "\n";
                     }
                     alert(msg);
-                }
+            }
             function postGet(pst) {
                 // Get post id from data- attribute
                 var id = $(pst).data("id");
@@ -143,7 +143,7 @@
                 $("#postid").val(id);
                 // Call Web API to get a list of Posts
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/post/" + id,
+                    url: "http://127.0.0.1:8000/api/posts/" + id,
                     type: 'GET',
                     dataType: 'json',
                     success: function (post) {
@@ -186,7 +186,7 @@
 
             function postAdd(post) {
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/addBlogs",
+                    url: "http://127.0.0.1:8000/api/create",
                     type: 'POST',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify(post),
@@ -206,7 +206,7 @@
 
             function postUpdate(post) {
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/updatePost/",
+                    url: "http://127.0.0.1:8000/api/update/",
                     type: 'PUT',
                     contentType: 
                     "application/json;charset=utf-8",
@@ -243,7 +243,7 @@
                 var id = $(ctl).data("id");
                         
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/deletePost/" + id,
+                    url: "http://127.0.0.1:8000/api/delete/" + id,
                     type: 'DELETE',
                     success: function (post) {
                         $(ctl).parents("tr").remove();
@@ -256,12 +256,12 @@
 
 
             function formClear() {
-            $("#name").val("");
-            $("#postmessage").val("");
-            $("#cell").val("");
+                $("#name").val("");
+                $("#postmessage").val("");
+                $("#cell").val("");
             }
             function addClick() {
-            formClear();
+                formClear();
             }
 
             $(document).ready(function () {
