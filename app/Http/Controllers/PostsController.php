@@ -18,15 +18,15 @@ class PostsController extends Controller
         if (is_null($post)) {
             return response()->json(['message' => 'post not found'], 404);
         }
-        return response()->json($post::find($id), 200);
+        return response()->json($post, 200);
     }
 
-    public function addBlogPost(Request $request) {
+    public function createPost(Request $request) {
         $post = Memes::create($request->all());
         return response()->json($post, 201);
     }
 
-    public function updateBlogPost(Request $request, $id) {
+    public function updatePost(Request $request, $id) {
         $post = Memes::find($id);
         if (is_null($post)) {
             return response()->json(['message' => 'post not found'], 404);
@@ -35,7 +35,7 @@ class PostsController extends Controller
         return response($post, 200);
     }
 
-    public function deleteBlogPost(Request $request, $id) {
+    public function deletePost(Request $request, $id) {
         $post = Memes::find($id);
         if (is_null($post)) {
             return response()->json(['message' => 'post not found'], 404);

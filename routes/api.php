@@ -23,13 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('posts', [PostsController::class,'getPosts']);
 
 //Get Specific post
-Route::get('post/{id}', [PostsController::class,'getPostById']);
+Route::get('posts/{id}', [PostsController::class,'getPostById']);
 
 //Add new post
-Route::post('addBlogs', [PostsController::class,'addBlogPost']);
+Route::post('create', [PostsController::class,'createPost']);
 
 //Update Post
-Route::put('updatePost/{id}', [PostsController::class,'updateBlogPost']);
+Route::put('update/{id}', [PostsController::class,'updatePost']);
 
 //Delete Post
-Route::delete('deletePost/{id}',[PostsController::class,'deleteBlogPost']);
+Route::delete('delete/{id}',[PostsController::class,'deletePost']);
