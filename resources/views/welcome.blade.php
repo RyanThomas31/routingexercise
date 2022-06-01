@@ -6,8 +6,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"></link>
         <title>Laravel</title>
-
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     </head>
     <body class="antialiased">
@@ -67,11 +65,6 @@
         </div>
 
         <script>
-
-            // Handle click event on Add button
-            function addClick() {
-            }
-
             function postsList() {
                 $.ajax({
                     url: "http://127.0.0.1:8000/api/posts",
@@ -93,18 +86,17 @@
                         // Add a row to the post table
                         postAddRow(post);
                     });
-            }
+            };
             function postAddRow(post) {
                 // Check if <tbody> tag exists, add one if not
                 if ($("#postsTable tbody").length == 0) {
                     $("#postsTable").append("<tbody></tbody>");
-                }
+                };
                 // Append row to <table>
                 $("#postsTable tbody").append(
                     postBuildTableRow(post));
-            }
+            };
             function postBuildTableRow(post) {
-                console.log(post);
                 var ret =
                     "<tr>" +
                     "<td>" + 
@@ -125,7 +117,7 @@
                     "</td>" +
                     "</tr>";
                 return ret;
-            }
+            };
 
             function handleException(request, message, error) {
                     var msg = "";
@@ -133,9 +125,9 @@
                     msg += "Text: " + request.statusText + "\n";
                     if (request.responseJSON != null) {
                         msg += "Message" + request.responseJSON.Message + "\n";
-                    }
+                    };
                     alert(msg);
-            }
+            };
             function postGet(pst) {
                 // Get post id from data- attribute
                 var id = $(pst).data("id");
@@ -158,16 +150,16 @@
                 });
             };
             function postToFields(post) {
-                $("#name").val(post.Name);
-                $("#postmessage").val(post.Post);
-                $("#cell").val(post.Cell);
+                $("#name").val(post.name);
+                $("#postmessage").val(post.post);
+                $("#cell").val(post.cell);
             };
 
             var Post = {
                 Name: "",
                 Post: "",
                 Cell: ""
-            }
+            };
 
 
             // Handle click event on Update button
@@ -181,12 +173,16 @@
                     postAdd(Post);
                 } else {
                     postUpdate(Post);
-                }
-            }
+                };
+            };
 
             function postAdd(post) {
+                var name = post.Name,
+                    cell = post.Cell,
+                    post = post.Post;
+
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/create",
+                    url: "http://127.0.0.1:8000/api/create?" + "name=" + name + "&post=" + post + "&cell=" + cell,
                     type: 'POST',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify(post),
@@ -197,16 +193,21 @@
                         handleException(request, message, error);
                     }
                 });
-            }
+            };
 
             function postAddSuccess(post) {
                 postAddRow(post);
                 formClear();
-            }
+            };
 
             function postUpdate(post) {
+                var name = post.Name,
+                    cell = post.Cell,
+                    post = post.Post,
+                    id = $("#postid").val();
+
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/update/",
+                    url: "http://127.0.0.1:8000/api/update/" + id + "?name=" + name + "&post=" + post + "&cell=" + cell,
                     type: 'PUT',
                     contentType: 
                     "application/json;charset=utf-8",
@@ -218,11 +219,11 @@
                     handleException(request, message, error);
                     }
                 });
-            }
+            };
 
             function postUpdateSuccess(post) {
                 postUpdateInTable(post);
-            }
+            };
 
             function postUpdateInTable(post) {
                 // Find Post in <table>
@@ -237,7 +238,7 @@
                 
                 // Change Update Button Text
                 $("#updateButton").text("Add");
-            }
+            };
 
             function postDelete(ctl) {
                 var id = $(ctl).data("id");
@@ -252,17 +253,17 @@
                         handleException(request, message, error);
                     }
                 });
-            }
+            };
 
 
             function formClear() {
                 $("#name").val("");
                 $("#postmessage").val("");
                 $("#cell").val("");
-            }
+            };
             function addClick() {
                 formClear();
-            }
+            };
 
             $(document).ready(function () {
                 postsList();
