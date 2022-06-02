@@ -182,7 +182,7 @@
                     post = post.Post;
 
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/create?" + "name=" + name + "&post=" + post + "&cell=" + cell,
+                    url: "http://127.0.0.1:8000/api/posts/create?" + "name=" + name + "&post=" + post + "&cell=" + cell,
                     type: 'POST',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify(post),
@@ -207,7 +207,7 @@
                     id = $("#postid").val();
 
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/update/" + id + "?name=" + name + "&post=" + post + "&cell=" + cell,
+                    url: "http://127.0.0.1:8000/api/posts/update/" + id + "?name=" + name + "&post=" + post + "&cell=" + cell,
                     type: 'PUT',
                     contentType: 
                     "application/json;charset=utf-8",
@@ -244,7 +244,7 @@
                 var id = $(ctl).data("id");
                         
                 $.ajax({
-                    url: "http://127.0.0.1:8000/api/delete/" + id,
+                    url: "http://127.0.0.1:8000/api/posts/delete/" + id,
                     type: 'DELETE',
                     success: function (post) {
                         $(ctl).parents("tr").remove();
