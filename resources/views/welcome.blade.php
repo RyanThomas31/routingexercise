@@ -67,7 +67,7 @@
         <script>
             function postsList() {
                 $.ajax({
-                    url: "{{ env('APP_URL')}}/api/posts",
+                    url: "{{ env('APP_URL') }}/api/posts",
                     method: "GET",
                     dataType: "json",
                     success: function(posts, request) {
@@ -135,7 +135,7 @@
                 $("#postid").val(id);
                 // Call Web API to get a list of Posts
                 $.ajax({
-                    url: "{{ env('APP_URL')}}/api/posts/" + id,
+                    url: "{{ env('APP_URL') }}/api/posts/" + id,
                     type: 'GET',
                     dataType: 'json',
                     success: function (post) {
@@ -182,7 +182,7 @@
                     postMessage = post.Post;
 
                 $.ajax({
-                    url: "{{ env('APP_URL')}}/api/posts/create?" + "name=" + userName + "&post=" + postMessage + "&cell=" + postCell,
+                    url: "{{ env('APP_URL') }}/api/posts/create?" + "name=" + userName + "&post=" + postMessage + "&cell=" + postCell,
                     type: 'POST',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify(post),
@@ -207,7 +207,7 @@
                     id = $("#postid").val();
 
                 $.ajax({
-                    url: "{{ env('APP_URL')}}/api/posts/update/" + id + "?name=" + userName + "&post=" + postMessage + "&cell=" + postCell,
+                    url: "{{ env('APP_URL') }}/api/posts/update/" + id + "?name=" + userName + "&post=" + postMessage + "&cell=" + postCell,
                     type: 'PUT',
                     contentType: 
                     "application/json;charset=utf-8",
@@ -244,7 +244,7 @@
                 var id = $(ctl).data("id");
                         
                 $.ajax({
-                    url: "{{ env('APP_URL')}}/api/posts/delete/" + id,
+                    url: "{{ env('APP_URL') }}/api/posts/delete/" + id,
                     type: 'DELETE',
                     success: function (post) {
                         $(ctl).parents("tr").remove();
