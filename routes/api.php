@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix'=>'posts'], function(){
+Route::group(['prefix' =>' posts'], function() {
     //Get all Posts
     Route::get('/', [PostsController::class,'getPosts']);
 
