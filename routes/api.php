@@ -19,17 +19,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Get all Posts
-Route::get('posts', [PostsController::class,'getPosts']);
+Route::group(['prefix' => 'posts'], function() {
+    //Get all Posts
+    Route::get('/', [PostsController::class,'getPosts']);
 
-//Get Specific post
-Route::get('posts/{id}', [PostsController::class,'getPostById']);
+    //Get Specific post
+    Route::get('/{id}', [PostsController::class,'getPostById']);
 
-//Add new post
-Route::post('create', [PostsController::class,'createPost']);
+    //Add new post
+    Route::post('/create', [PostsController::class,'createPost']);
 
-//Update Post
-Route::put('update/{id}', [PostsController::class,'updatePost']);
+    //Update Post
+    Route::put('/update/{id}', [PostsController::class,'updatePost']);
 
-//Delete Post
-Route::delete('delete/{id}',[PostsController::class,'deletePost']);
+    //Delete Post
+    Route::delete('/delete/{id}',[PostsController::class,'deletePost']);
+});
