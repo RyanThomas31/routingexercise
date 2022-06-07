@@ -177,12 +177,12 @@
             };
 
             function postAdd(post) {
-                var name = post.Name,
-                    cell = post.Cell,
-                    post = post.Post;
+                var userName = post.Name,
+                    postCell = post.Cell,
+                    postMessage = post.Post;
 
                 $.ajax({
-                    url: "{{ env('APP_URL')}}/api/posts/create?" + "name=" + name + "&post=" + post + "&cell=" + cell,
+                    url: "{{ env('APP_URL')}}/api/posts/create?" + "name=" + userName + "&post=" + postMessage + "&cell=" + postCell,
                     type: 'POST',
                     contentType: "application/json;charset=utf-8",
                     data: JSON.stringify(post),
@@ -201,13 +201,13 @@
             };
 
             function postUpdate(post) {
-                var name = post.Name,
-                    cell = post.Cell,
-                    post = post.Post,
+                var userName = post.Name,
+                    postCell = post.Cell,
+                    postMessage = post.Post,
                     id = $("#postid").val();
 
                 $.ajax({
-                    url: "{{ env('APP_URL')}}/api/posts/update/" + id + "?name=" + name + "&post=" + post + "&cell=" + cell,
+                    url: "{{ env('APP_URL')}}/api/posts/update/" + id + "?name=" + userName + "&post=" + postMessage + "&cell=" + postCell,
                     type: 'PUT',
                     contentType: 
                     "application/json;charset=utf-8",
